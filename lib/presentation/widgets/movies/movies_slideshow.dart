@@ -17,7 +17,7 @@ class MoviesSlideshow extends StatelessWidget {
       child: Swiper(
         viewportFraction: 0.8,
         scale: 0.9,
-        autoplay: true,
+        // autoplay: true,
         itemCount: movies.length,
         pagination: SwiperPagination(
             margin: const EdgeInsets.only(top: 0),
@@ -38,8 +38,6 @@ class _Slide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleStyle = Theme.of(context).textTheme.titleMedium;
-
     final decoration = BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
@@ -78,12 +76,14 @@ class _Slide extends StatelessWidget {
               ),
               const PosterGradient(),
               Positioned(
-                  left: 10,
-                  bottom: 10,
+                  left: 20,
+                  bottom: 5,
                   child: Text(
                     movie.title,
-                    style: TextStyle(
-                      color: Colors.white
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15
                     ),
                     
                   ))
