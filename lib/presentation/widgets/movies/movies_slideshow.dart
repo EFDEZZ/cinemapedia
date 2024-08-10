@@ -1,14 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 
 class MoviesSlideshow extends StatelessWidget {
   final List<Movie> movies;
-  const MoviesSlideshow({
-    super.key, 
-    required this.movies
-    });
+  const MoviesSlideshow({super.key, required this.movies});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +20,13 @@ class MoviesSlideshow extends StatelessWidget {
         autoplay: true,
         itemCount: movies.length,
         pagination: SwiperPagination(
-          margin: const EdgeInsets.only(top: 0),
-          builder: DotSwiperPaginationBuilder(
-            activeColor: colors.primary,
-            color: const Color.fromARGB(204, 158, 158, 158),
-          )
-        ),
+            margin: const EdgeInsets.only(top: 0),
+            builder: DotSwiperPaginationBuilder(
+              activeColor: colors.primary,
+              color: const Color.fromARGB(204, 158, 158, 158),
+            )),
         itemBuilder: (context, index) => _Slide(movie: movies[index]),
-        ),
+      ),
     );
   }
 }
@@ -41,7 +38,9 @@ class _Slide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final decoration = BoxDecoration(
+    final titleStyle = Theme.of(context).textTheme.titleMedium;
+
+    final decoration = BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
@@ -49,33 +48,47 @@ class _Slide extends StatelessWidget {
             blurRadius: 10,
             offset: Offset(0, 10),
           )
-        ]
-  );
+        ]);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 30),
       child: DecoratedBox(
-        decoration: decoration,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image.network(
-            movie.backdropPath,
-            fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if(loadingProgress!=null){
-                return const DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
+          decoration: decoration,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Stack(
+              children: [
+              Image.network(
+                movie.backdropPath,
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress != null) {
+                    return const DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Colors.black12,
+                        ),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                          ),
+                        ));
+                  }
+                  return FadeIn(child: child);
+                },
+              ),
+              const PosterGradient(),
+              Positioned(
+                  left: 10,
+                  bottom: 10,
+                  child: Text(
+                    movie.title,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
                     
-                  ),
-                  child: Center(
-                    child: CircularProgressIndicator(strokeWidth: 2,),
-                  ));
-              }
-              return FadeIn(child: child);
-            },
-            ),
-        )),
+                  ))
+            ]),
+          )),
     );
   }
 }
