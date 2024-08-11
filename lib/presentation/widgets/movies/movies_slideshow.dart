@@ -17,7 +17,7 @@ class MoviesSlideshow extends StatelessWidget {
       child: Swiper(
         viewportFraction: 0.8,
         scale: 0.9,
-        // autoplay: true,
+        autoplay: true,
         itemCount: movies.length,
         pagination: SwiperPagination(
             margin: const EdgeInsets.only(top: 0),
@@ -80,6 +80,7 @@ class _Slide extends StatelessWidget {
                   bottom: 5,
                   child: Text(
                     movie.title,
+                    maxLines: 2,
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
