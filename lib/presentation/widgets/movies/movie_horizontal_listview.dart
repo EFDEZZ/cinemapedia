@@ -1,6 +1,8 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cinemapedia/config/helpers/number_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MovieHorizontalListview extends StatelessWidget {
   final List<Movie> movies;
@@ -47,56 +49,68 @@ class _Slide extends StatelessWidget {
   Widget build(BuildContext context) {
     final titleStyle = Theme.of(context).textTheme;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-
-          //*Imagen
-          SizedBox(
-            width: 150,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                fit: BoxFit.cover,
-                movie.posterPath, 
-                width: 150,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if(loadingProgress != null){
-                    return const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Center(child: CircularProgressIndicator(strokeWidth: 2,)),
-                    );
-                  }
-                  
-                  return FadeInRight(child: child);
-                },
-                ),
-              )
-            ),
-            const SizedBox(height: 5,),
-            //* Titulo
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      child: Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //*Imagen
             SizedBox(
               width: 150,
-              child: Text(
-                movie.title,
-                maxLines: 2,
-                style: titleStyle.titleSmall,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  fit: BoxFit.cover,
+                  movie.posterPath, 
+                  width: 150,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if(loadingProgress != null){
+                      return const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Center(child: CircularProgressIndicator(strokeWidth: 2,)),
+                      );
+                    }
+                    
+                    return FadeInRight(child: child);
+                  },
+                  ),
+                )
               ),
-            ),
-            // *Rating
-            Row(
-              children: [
-                Icon(Icons.star_half_outlined, color: Colors.yellow.shade800,),
-                const SizedBox(width: 5,),
-                Text('${movie.voteAverage}', style: TextStyle(color: Colors.yellow.shade800),),
-                const SizedBox(width: 10,),
-                Text('${movie.popularity}')
-              ],
-            )
-
-        ],
+            
+              const SizedBox(height: 5,),
+            
+              //* Titulo
+              SizedBox(
+                width: 150,
+                child: Text(
+                  movie.title,
+                  maxLines: 2,
+                  style: titleStyle.titleSmall,
+                ),
+              ),
+              // *Rating
+              SizedBox(
+                width: 150,
+                child: Container(
+                  margin: const EdgeInsets.only(left: 5, right: 15),
+                  child: Row(
+                    children: [
+                      Icon(Icons.star_half_outlined, color: Colors.yellow.shade800,),
+                      const SizedBox(width: 5,),
+                      // Text('${movie.voteAverage}', style: TextStyle(color: Colors.yellow.shade800),),
+                      Text(NumberFormats.numberRounded(movie.voteAverage), style: TextStyle(color: Colors.yellow.shade900),),
+                      const Spacer(),
+                      const Icon(Icons.thumb_up_outlined, color: Color.fromARGB(255, 12, 82, 139),),
+                      const SizedBox(width: 5,),
+                      Text(NumberFormats.humanFormatNumber(movie.popularity))
+                      // Text('${movie.popularity}')
+                    ],
+                  ),
+                ),
+              )
+        
+          ],
+        ),
       ), 
       );
   }
@@ -112,7 +126,8 @@ class _Title extends StatelessWidget {
   Widget build(BuildContext context) {
     final titleStyle = Theme.of(context).textTheme.titleLarge;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 14),
+      padding: const EdgeInsets.only(top: 10),
       child: Row(
         children: [
           if(title != null)
