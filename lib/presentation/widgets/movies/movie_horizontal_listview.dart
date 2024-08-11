@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/helpers/number_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class MovieHorizontalListview extends StatelessWidget {
   final List<Movie> movies;
