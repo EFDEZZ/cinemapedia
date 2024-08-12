@@ -13,7 +13,7 @@ class NumberFormats {
   }
 
   static String numberRounded(double number) {
-    final formatterNumber = NumberFormat('#.0', 'en_us').format(number);
+    final formatterNumber = NumberFormat('0.0', 'en_us').format(number);
     return formatterNumber;
   }
 }
