@@ -20,4 +20,14 @@ class MovieRepositoyImpl extends MoviesRepository{
     return datasource.getPopular(page: page);
   }
   
+  @override
+  Future<List<Movie>> getTopRated({int page = 1}) {
+    return datasource.getTopRated();
+  }
+  
+  @override
+  Future<List<Movie>> getUpcoming({int page = 1}) {
+    return datasource.getUpcoming();
+  }
+  
 }
