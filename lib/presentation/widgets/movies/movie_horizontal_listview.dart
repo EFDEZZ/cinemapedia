@@ -48,10 +48,10 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
       height: 350,
       child: Column(
         children: [
-
+          const SizedBox(height: 10,),
           if(widget.title != null || widget.subtitle != null)
           _Title(title: widget.title, subtitle: widget.subtitle,),
-
+          const SizedBox(height: 7,),
           Expanded(
             child: ListView.builder(
               controller: scrollController,
@@ -116,6 +116,7 @@ class _Slide extends StatelessWidget {
                   style: titleStyle.titleSmall,
                 ),
               ),
+              
               // *Rating
               SizedBox(
                 width: 150,
@@ -169,7 +170,8 @@ class _Title extends StatelessWidget {
           FilledButton.tonal(
             style: const ButtonStyle(visualDensity: VisualDensity.compact),
             onPressed: (){}, 
-            child: Text(subtitle!,))
+            child: Text(subtitle!,)),
+            
         ],
       ),
     );
