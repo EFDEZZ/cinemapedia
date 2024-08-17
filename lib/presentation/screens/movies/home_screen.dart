@@ -38,13 +38,16 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    
+    final initialLoading = ref.watch(initialLoadingProvider);
+
+    if(initialLoading)  return const FullScreenLoader();
+
     final slideShowMovies = ref.watch(moviesSlideShowProvider);
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
     final upcomingMovies = ref.watch(upcomingMoviesProvider);
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
-
-    return const Center(child: CircularProgressIndicator(strokeWidth: 2,));
 
     return CustomScrollView(
       slivers: [
@@ -87,7 +90,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
             subtitle: 'Todos Los Tiempos',
             loadNextPage: () => ref.read(topRatedMoviesProvider.notifier).loadNextPage(),
             ),
-            const SizedBox(height: 15,)
+            const SizedBox(height: 10,)
       
         ],
       );
