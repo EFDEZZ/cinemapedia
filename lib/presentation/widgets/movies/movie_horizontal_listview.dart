@@ -45,7 +45,7 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 350,
+      height: 380,
       child: Column(
         children: [
           const SizedBox(height: 10,),
@@ -121,7 +121,7 @@ class _Slide extends StatelessWidget {
               SizedBox(
                 width: 150,
                 child: Container(
-                  margin: const EdgeInsets.only(left: 5, right: 15),
+                  margin: const EdgeInsets.only(left: 5, right: 15,),
                   child: Row(
                     children: [
                       Icon(Icons.star_half_outlined, color: Colors.yellow.shade800,),
