@@ -30,4 +30,9 @@ class MovieRepositoyImpl extends MoviesRepository{
     return datasource.getUpcoming();
   }
   
+  @override
+  Future<Movie> getMovieDetails(String id) {
+    return datasource.getMovieDetails(id);
+  }
+  
 }
