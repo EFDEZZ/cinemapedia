@@ -68,9 +68,10 @@ class _MovieDetails extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
-          padding: const EdgeInsets.all(5),
+        Padding(
+          padding: const EdgeInsets.all(8),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //*Imagen
               Column(
@@ -122,7 +123,7 @@ class _MovieDetails extends StatelessWidget {
 
               //* Titulo y Sinopsis
               SizedBox(
-                width: (size.width - 35) * 0.7,
+                width: (size.width - 40) * 0.7,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -139,12 +140,34 @@ class _MovieDetails extends StatelessWidget {
                   ],
                 ),
               ),
+              
             ],
           ),
         ),
+
+        //Generos
+        Padding(
+          padding: const EdgeInsets.all(5),
+          child: Wrap(
+            children: [
+              ...movie.genreIds.map((gender) => Container(
+                margin: const EdgeInsets.only(right: 8),
+                child: Chip(
+                  label: Text(gender),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  ),
+              ),)
+            ],
+          ),
+        ),
+
+
+        //Actores
+
+
         const SizedBox(
-          height: 50,
-        )
+          height: 100,
+        ),
       ],
     );
   }
