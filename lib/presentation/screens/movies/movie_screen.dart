@@ -163,6 +163,11 @@ class _MovieDetails extends StatelessWidget {
 
 
         //Actores
+        Row(
+          children: [],
+        ),
+
+
 
 
         const SizedBox(
