@@ -8,8 +8,7 @@ class ActorMapper{
     name: cast.name, 
     profilePath: cast.profilePath != null 
     ? 'https://image.tmdb.org/t/p/w500${cast.profilePath}'
-    // TODO: Poner foto
-    : 'no photo found', 
+    : 'https://secdatacom.no/wp-content/uploads/sites/3/2019/10/blank-profile-male.jpg', 
     character: cast.character
     );
 }
