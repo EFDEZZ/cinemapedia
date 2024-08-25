@@ -12,7 +12,7 @@ class PosterGradient extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [
-            0.7, 0.98
+            0.8, 1
           ],
               colors: [
             Colors.transparent,
