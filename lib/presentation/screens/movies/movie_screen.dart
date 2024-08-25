@@ -69,6 +69,8 @@ class _MovieDetails extends StatelessWidget {
     final textStyle = Theme.of(context).textTheme;
 
     return Column(
+      
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.all(8),
@@ -149,7 +151,7 @@ class _MovieDetails extends StatelessWidget {
 
         //Generos
         Padding(
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.all(8),
           child: Wrap(
             children: [
               ...movie.genreIds.map((gender) => Container(
@@ -162,7 +164,9 @@ class _MovieDetails extends StatelessWidget {
             ],
           ),
         ),
-
+        Container(
+          margin: const EdgeInsets.only(left: 10, bottom: 5),
+          child: Text('Actores:', textAlign: TextAlign.start ,style: textStyle.titleMedium,)),
 
         //Actores
         _ActorsByMovie(movieID: movie.id.toString()),
