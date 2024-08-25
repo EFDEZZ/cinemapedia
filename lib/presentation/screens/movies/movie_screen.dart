@@ -20,6 +20,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
   void initState() {
     super.initState();
     ref.read(movieInfoProvider.notifier).loadMovie(widget.movieID);
+    ref.read(actorsByMovieProvider.notifier).loadActors(widget.movieID);
   }
 
   @override
@@ -163,9 +164,7 @@ class _MovieDetails extends StatelessWidget {
 
 
         //Actores
-        Row(
-          children: [],
-        ),
+        
 
 
 
@@ -191,11 +190,11 @@ class _CustomSliver extends StatelessWidget {
       foregroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        title: Text(
-          movie.title,
-          style: const TextStyle(fontSize: 20, color: Colors.white),
-          textAlign: TextAlign.start,
-        ),
+        // title: Text(
+        //   movie.title,
+        //   style: const TextStyle(fontSize: 20, color: Colors.white),
+        //   textAlign: TextAlign.start,
+        // ),
         background: Stack(
           children: [
             SizedBox.expand(
