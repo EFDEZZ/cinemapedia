@@ -20,7 +20,7 @@ class MovieMapper {
       voteCount: movieDB.voteCount,
       genreIds: movieDB.genreIds.map((e) => e.toString()).toList(),
       popularity: movieDB.popularity,
-      releaseDate: movieDB.releaseDate,
+      releaseDate: movieDB.releaseDate != null ? movieDB.releaseDate!: DateTime.now(),
       voteAverage: movieDB.voteAverage);
 
   static Movie movieDetailsToEntity(MovieDetails movieDB) => Movie(
