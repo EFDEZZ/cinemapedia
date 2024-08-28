@@ -97,7 +97,7 @@ class _MovieSearchItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(movie.title, style: textStyle.titleMedium,),
+              Text('${movie.title} (${movie.releaseDate.toString().substring(0,4)})', style: textStyle.titleMedium,),
               (movie.overview.length > 100)
               ? Text('${movie.overview.substring(0, 100)}...')
               : Text(movie.overview),

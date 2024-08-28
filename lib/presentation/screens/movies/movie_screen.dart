@@ -132,7 +132,7 @@ class _MovieDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      movie.title,
+                      '${movie.title} (${movie.releaseDate.toString().substring(0,4)})',
                       style: textStyle.titleLarge,
                     ),
                     const SizedBox(
