@@ -38,7 +38,9 @@ class MovieFromMovieDB {
         id: json["id"],
         originalLanguage: json["original_language"] ?? '',
         originalTitle: json["original_title"] ?? '',
-        overview: json["overview"] ?? 'No sinopsis',
+        overview: (json["overview"] != null )
+        ? json["overview"]
+        :'No sinopsis',
         popularity: json["popularity"]?.toDouble() ?? 0,
         posterPath: json["poster_path"] ?? '',
         releaseDate: json["release_date"] != null && json["release_date"].toString().isNotEmpty

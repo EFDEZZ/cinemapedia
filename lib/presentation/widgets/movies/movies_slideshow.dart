@@ -1,8 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
+import 'package:go_router/go_router.dart';
 
 class MoviesSlideshow extends StatelessWidget {
   final List<Movie> movies;
@@ -15,7 +15,7 @@ class MoviesSlideshow extends StatelessWidget {
       height: 210,
       width: double.infinity,
       child: Swiper(
-        viewportFraction: 0.8,
+        viewportFraction: 0.78,
         scale: 0.9,
         autoplay: true,
         itemCount: movies.length,
@@ -42,9 +42,9 @@ class _Slide extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
-            color: Colors.black,
-            blurRadius: 10,
-            offset: Offset(0, 10),
+            color: Color.fromARGB(217, 0, 0, 0),
+            blurRadius: 5,
+            offset: Offset(1, 6.5),
           )
         ]);
 
@@ -56,25 +56,25 @@ class _Slide extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Stack(
               children: [
-              Image.network(
-                movie.backdropPath,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress != null) {
-                    return const DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Colors.black12,
-                        ),
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                          ),
-                        ));
+              GestureDetector(
+                child: Image.network(
+                  movie.backdropPath,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                  if(loadingProgress != null){
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Center(child: CircularProgressIndicator(strokeWidth: 2,)),
+                    );
                   }
-                  return FadeIn(child: child);
+                  
+                  return GestureDetector(
+                    onTap: () => context.push('/movie/${movie.id}'),
+                    child: FadeIn(child: child));
                 },
+                ),
               ),
-              const PosterGradient(),
+              // const PosterGradient(),
               Positioned(
                   left: 20,
                   bottom: 5,
