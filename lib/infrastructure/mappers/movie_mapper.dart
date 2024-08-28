@@ -14,7 +14,7 @@ class MovieMapper {
       overview: movieDB.overview,
       posterPath: (movieDB.posterPath != '') 
       ? 'https://image.tmdb.org/t/p/w500${movieDB.posterPath}'
-      : 'no-poster',
+      : 'https://th.bing.com/th/id/OIP.T1uutxkFTHvSswa1emt5HAAAAA?w=126&h=189&c=7&r=0&o=5&dpr=1.3&pid=1.7',
       title: movieDB.title,
       id: movieDB.id,
       voteCount: movieDB.voteCount,
