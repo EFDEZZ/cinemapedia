@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/helpers/number_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:cinemapedia/presentation/widgets/shared/poster_gradient.dart';
+import 'package:cinemapedia/presentation/widgets/shared/custom_gradient.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -242,6 +242,11 @@ class _CustomSliver extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SliverAppBar(
+      actions: [
+        IconButton(onPressed: (){
+          
+        }, icon: const Icon(Icons.favorite_border_outlined))
+      ],
       backgroundColor: Colors.black,
       expandedHeight: size.height * 0.7,
       foregroundColor: Colors.white,
@@ -264,8 +269,35 @@ class _CustomSliver extends StatelessWidget {
                 },
               ),
             ),
-            const PosterGradient(),
-            const BackArrowGradient(),
+            // PosterGradient
+            const CustomGradient(
+                begin: Alignment.topCenter, 
+                end: Alignment.bottomCenter, 
+                stops: [0.7, 1], 
+                colors: [
+                Colors.transparent, 
+                Colors.black87
+                ]
+              ),
+              // BackArrow Gradient
+            const CustomGradient(
+                begin: Alignment.topLeft, 
+                stops: [0.0, 0.3], 
+                colors: [
+                  Colors.black,
+                  Colors.transparent,
+                ]
+              ),
+              // FavoriteButton Gradient
+            const CustomGradient(
+                begin: Alignment.topRight, 
+                end: Alignment.bottomLeft,
+                stops: [0.0, 0.25], 
+                colors: [
+                  Colors.black54,
+                  Colors.transparent,
+                ]
+              ),
           ],
         ),
       ),
