@@ -234,20 +234,38 @@ class _ActorsByMovie extends ConsumerWidget {
     );
   }
 }
+
+final isFavoriteProvider = FutureProvider.family.autoDispose((ref, int movieId) {
+  final localStorageRepository = ref.watch(localStorageRepositoryProvider);
+  return localStorageRepository.isMovieFavorite(movieId);
+},);
 class _CustomSliver extends ConsumerWidget {
   final Movie movie;
   const _CustomSliver({required this.movie});
 
   @override
   Widget build(BuildContext context, ref) {
+    
     final size = MediaQuery.of(context).size;
+    final isFavoriteFuture = ref.watch(isFavoriteProvider(movie.id));
+
     return SliverAppBar(
       actions: [
         IconButton(onPressed: (){
       
           ref.watch(localStorageRepositoryProvider).toggleFavorite(movie);
+          ref.invalidate(isFavoriteProvider);
     
-        }, icon: const Icon(Icons.favorite_border_outlined))
+        }, icon: isFavoriteFuture.when(
+          data: (isFavorite) => isFavorite
+          ? const Icon(Icons.favorite, color: Colors.red,)
+          : const Icon(Icons.favorite_border_rounded), 
+          error: (error, stackTrace) => throw UnimplementedError(), 
+          loading: () => const CircularProgressIndicator(strokeWidth: 2,),
+          ),
+        )
+        // 
+        //const Icon(Icons.favorite_border_outlined))
       ],
       backgroundColor: Colors.black,
       expandedHeight: size.height * 0.7,
