@@ -1,6 +1,5 @@
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import '../../views/views.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -11,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomnavigation(),
+      bottomNavigationBar: const CustomBottomnavigation(),
       body: childView,
     );
   }
