@@ -234,17 +234,19 @@ class _ActorsByMovie extends ConsumerWidget {
     );
   }
 }
-class _CustomSliver extends StatelessWidget {
+class _CustomSliver extends ConsumerWidget {
   final Movie movie;
   const _CustomSliver({required this.movie});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     final size = MediaQuery.of(context).size;
     return SliverAppBar(
       actions: [
         IconButton(onPressed: (){
-          
+      
+          ref.watch(localStorageRepositoryProvider).toggleFavorite(movie);
+    
         }, icon: const Icon(Icons.favorite_border_outlined))
       ],
       backgroundColor: Colors.black,
