@@ -3,10 +3,10 @@ import 'package:isar/isar.dart';
 
 part 'movie.g.dart';
 
-@collection
+@Collection()
 class Movie{
 
-  Id? isarId;
+  Id isarId = Isar.autoIncrement;
 
   final bool adult;
   final bool video;

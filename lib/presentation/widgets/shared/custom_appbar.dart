@@ -11,6 +11,7 @@ class CustomAppbar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = Theme.of(context).colorScheme;
+    
     final titleStyle = Theme.of(context).textTheme.titleMedium;
 
     return SafeArea(

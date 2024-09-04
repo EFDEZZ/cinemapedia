@@ -250,26 +250,28 @@ class _CustomSliver extends ConsumerWidget {
     final isFavoriteFuture = ref.watch(isFavoriteProvider(movie.id));
 
     return SliverAppBar(
+      backgroundColor: Colors.black,
+      expandedHeight: size.height * 0.7,
+      foregroundColor: Colors.white,
       actions: [
         IconButton(onPressed: (){
       
           ref.watch(localStorageRepositoryProvider).toggleFavorite(movie);
           ref.invalidate(isFavoriteProvider);
     
-        }, icon: isFavoriteFuture.when(
-          data: (isFavorite) => isFavorite
-          ? const Icon(Icons.favorite, color: Colors.red,)
-          : const Icon(Icons.favorite_border_rounded), 
-          error: (error, stackTrace) => throw UnimplementedError(), 
-          loading: () => const CircularProgressIndicator(strokeWidth: 2,),
-          ),
+        }, 
+        // icon: isFavoriteFuture.when(
+        //   loading: () => const CircularProgressIndicator(strokeWidth: 2),
+        //   data: (isFavorite) => isFavorite
+        //   ? const Icon(Icons.favorite, color: Colors.red,)
+        //   : const Icon(Icons.favorite_border_rounded), 
+        //   error: (error, stackTrace) => throw UnimplementedError(), 
+        //   ),
+        icon: Icon(Icons.favorite_border_rounded),
         )
         // 
         //const Icon(Icons.favorite_border_outlined))
       ],
-      backgroundColor: Colors.black,
-      expandedHeight: size.height * 0.7,
-      foregroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         // title: Text(

@@ -1,4 +1,5 @@
 
+
 import 'package:cinemapedia/domain/datasources/local_storage_datasource.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:isar/isar.dart';
@@ -13,8 +14,9 @@ class IsarDatasource extends LocalStorageDatasource{
   
 
   Future<Isar> openDB() async {
+    
     if (Isar.instanceNames.isEmpty){
-      return await Isar.open([MovieSchema], directory: '');
+      return await Isar.open([MovieSchema], directory: 'https://inspect.isar.dev/3.1.0+1/#/5825/TWVz5iSDwmM', inspector: true);
     }
     return Future.value(Isar.getInstance());
   }
@@ -42,7 +44,7 @@ class IsarDatasource extends LocalStorageDatasource{
 
     if (favoriteMovie != null){
       // Borrar
-      isar.writeTxnSync(() => isar.movies.delete(favoriteMovie.isarId!),);
+      isar.writeTxnSync(() => isar.movies.delete(favoriteMovie.isarId),);
       return;
     }
     // Insertar
