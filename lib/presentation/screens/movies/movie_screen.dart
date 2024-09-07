@@ -260,14 +260,14 @@ class _CustomSliver extends ConsumerWidget {
           ref.invalidate(isFavoriteProvider);
     
         }, 
-        // icon: isFavoriteFuture.when(
-        //   loading: () => const CircularProgressIndicator(strokeWidth: 2),
-        //   data: (isFavorite) => isFavorite
-        //   ? const Icon(Icons.favorite, color: Colors.red,)
-        //   : const Icon(Icons.favorite_border_rounded), 
-        //   error: (error, stackTrace) => throw UnimplementedError(), 
-        //   ),
-        icon: Icon(Icons.favorite_border_rounded),
+        icon: isFavoriteFuture.when(
+          loading: () => const CircularProgressIndicator(strokeWidth: 2),
+          data: (isFavorite) => isFavorite
+          ? const Icon(Icons.favorite, color: Colors.red,)
+          : const Icon(Icons.favorite_border_rounded), 
+          error: (error, stackTrace) => throw UnimplementedError(), 
+          ),
+    
         )
         // 
         //const Icon(Icons.favorite_border_outlined))
