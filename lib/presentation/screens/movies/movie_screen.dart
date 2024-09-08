@@ -263,7 +263,7 @@ class _CustomSliver extends ConsumerWidget {
         icon: isFavoriteFuture.when(
           loading: () => const CircularProgressIndicator(strokeWidth: 2),
           data: (isFavorite) => isFavorite
-          ? const Icon(Icons.favorite, color: Colors.red,)
+          ? const Icon(Icons.favorite_rounded, color: Colors.red,)
           : const Icon(Icons.favorite_border_rounded), 
           error: (error, stackTrace) => throw UnimplementedError(), 
           ),
