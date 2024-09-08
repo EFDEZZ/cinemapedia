@@ -238,7 +238,7 @@ class _ActorsByMovie extends ConsumerWidget {
 final isFavoriteProvider = FutureProvider.family.autoDispose((ref, int movieId) {
   final localStorageRepository = ref.watch(localStorageRepositoryProvider);
   return localStorageRepository.isMovieFavorite(movieId);
-},);
+});
 class _CustomSliver extends ConsumerWidget {
   final Movie movie;
   const _CustomSliver({required this.movie});
@@ -257,14 +257,14 @@ class _CustomSliver extends ConsumerWidget {
         IconButton(onPressed: (){
       
           ref.watch(localStorageRepositoryProvider).toggleFavorite(movie);
-          ref.invalidate(isFavoriteProvider);
+          ref.invalidate(isFavoriteProvider(movie.id));
     
         }, 
         icon: isFavoriteFuture.when(
           loading: () => const CircularProgressIndicator(strokeWidth: 2),
           data: (isFavorite) => isFavorite
-          ? const Icon(Icons.favorite_rounded, color: Colors.red,)
-          : const Icon(Icons.favorite_border_rounded), 
+            ? const Icon(Icons.favorite_rounded, color: Colors.red,)
+            : const Icon(Icons.favorite_border_rounded), 
           error: (error, stackTrace) => throw UnimplementedError(), 
           ),
     
