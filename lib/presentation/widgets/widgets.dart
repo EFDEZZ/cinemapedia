@@ -9,3 +9,5 @@ export 'package:cinemapedia/presentation/widgets/shared/custom_appbar.dart';
 export 'package:cinemapedia/presentation/widgets/shared/custom_bottomnavigation.dart';
 export 'package:cinemapedia/presentation/widgets/shared/full_screen_loader.dart';
 export 'package:cinemapedia/presentation/widgets/shared/custom_gradient.dart';
+export 'movies/movie_masonry.dart';
+export 'movies/movie_poster_link.dart';
