@@ -254,9 +254,10 @@ class _CustomSliver extends ConsumerWidget {
       expandedHeight: size.height * 0.7,
       foregroundColor: Colors.white,
       actions: [
-        IconButton(onPressed: (){
+        IconButton(onPressed: () async {
       
-          ref.watch(localStorageRepositoryProvider).toggleFavorite(movie);
+          // ref.read(localStorageRepositoryProvider).toggleFavorite(movie);
+          await ref.read(favoriteMoviesProvider.notifier).toggleFavorite(movie);
           ref.invalidate(isFavoriteProvider(movie.id));
     
         }, 
